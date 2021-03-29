@@ -1,5 +1,6 @@
 import requests
 from pprint import pprint
+##This program get the current weather for the city that is given in the input.
 
 Api_key = '545c200c5d4d6d3eb8bf18fb819ad3cc'
 
