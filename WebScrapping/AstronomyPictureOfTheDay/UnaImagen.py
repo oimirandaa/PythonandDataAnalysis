@@ -160,8 +160,10 @@ def pictureScrapper():
     except:
         print("No image was found, the date you chosed is a video")
 
+#This version of the function takes as a parameter the date you want
 def pictureScrapper(day, month, year):
 
+    #We check the date that is valid
     if(year < 2015):
         return print("Invalid Year")
 
@@ -182,7 +184,7 @@ def pictureScrapper(day, month, year):
         elif(day >= 10):
             date = str(year - 2000) + "" + str(month) + "" + str(day)
 
-    #We call the function for the date and we store in a variable
+    #Parse the date
     date = int(date)
 
     #We check for the date of today so we can find the image that we are looking for
@@ -231,4 +233,4 @@ def pictureScrapper(day, month, year):
     except:
         print("No image was found, the date you chosed is a video")
 
-pictureScrapper(35,10,2020)
+pictureScrapper()
