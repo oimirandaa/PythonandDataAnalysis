@@ -19,7 +19,7 @@ def dateInput():
         print("Please enter a year that is valid.")
         dateInput()
 
-    print("Please enter the month from 1 to 12 with the next values:\n "
+    print("Please enter the month from 1 to 12 with the next values:\n"
         + "1 - January \n"
         + "2 - February\n"
         + "3 - March\n"
@@ -135,32 +135,39 @@ def dateInput():
                     elif(day > 9):
                         return str((year-2000)) + "" + str(month) + "" + str(day)
 
+#The following funcion uses the function dateInput() to scrape the image of that date. 
+def pictureScrapper():
+    #We call the function for the date and we store in a variable
+    date = dateInput()
 
-dateInput()
+    #This is the url of the picture
+    url = "https://apod.nasa.gov/apod/ap" + date + ".html"
+    html_text = requests.get(url).content
 
-url = "https://apod.nasa.gov/apod/ap210515.html"
-html_text = requests.get(url).content
+    #We call the Soup variable
+    soup = BeautifulSoup(html_text, 'html.parser')
 
-soup = BeautifulSoup(html_text, 'html.parser')
+    #We look for the img type
+    images = soup.findAll('img') 
+    
+    #This will save the string from the url of the image.
+    example = images[0]
 
-images = soup.findAll('img') 
+    url_base = "https://apod.nasa.gov/apod/" #A base url to find the image
+    url_ext = example.attrs['src'] #We extract the url for the image so we can find it
 
-example = images[0]
+    full_Url = url_base + url_ext #This is the url for the image
 
-url_base = "https://apod.nasa.gov/apod/"
+    r = requests.get(full_Url, stream=True) #We requests for the url of the image
 
-url_ext = example.attrs['src']
+    if r.status_code == 200: #We make sure that the requests is valid 
 
-full_Url = url_base + url_ext
- 
-print(full_Url)
+        #We store the image in the folder Images and name the pictures as image and the date.
+        with open("D:/Proyectos/Python/WebScrapping/AstronomyPictureOfTheDay/Images/image" + date + ".jpg", 'wb') as f:
+            r.raw.decode_content = True
+            shutil.copyfileobj(r.raw, f)
 
-r = requests.get(full_Url, stream=True)
+        print("The image was downloaded")
 
-if r.status_code == 200:
 
-    with open("D:/Proyectos/Python/WebScrapping/AstronomyPictureOfTheDay/Images/imagen.jpg", 'wb') as f:
-
-        r.raw.decode_content = True
-        shutil.copyfileobj(r.raw, f)
-
+pictureScrapper()
