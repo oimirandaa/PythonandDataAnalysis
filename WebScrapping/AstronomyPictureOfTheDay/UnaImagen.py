@@ -6,6 +6,22 @@ from datetime import datetime
 #This is a webscrapper that scrapes the image of the day fot the website A Picture of the day of NASA. 
 #You enter the date and it gives you the image. 
 
+#This function helps optimize the code for somthing that is repeated for evey option
+def printDateandReturn(day, month, year, Months):
+    print("The date you chosed is the " + str(day) + 
+            " of " + str(Months[month - 1]) + " of " + str(year))
+
+    if(month < 10):
+        if(day < 10):
+             return str((year-2000)) + "0" + str(month) + "0" + str(day)
+        elif(day > 9):
+            return str((year-2000)) + "0" + str(month) + "" + str(day)
+    elif(month>9):
+        if(day < 10):
+            return str((year-2000)) + "" + str(month) + "0" + str(day)
+        elif(day > 9):
+            return str((year-2000)) + "" + str(month) + "" + str(day)
+
 #The following function receives de date by console. It will return a String with the date we need
 def dateInput():
 
@@ -51,19 +67,8 @@ def dateInput():
             print("you have to choose a valid day")
             dateInput()
         else:
-            print("The date you chosed is the " + str(day) + 
-            " of " + str(Months[month - 1]) + " of " + str(year))
-
-            if(month < 10):
-                if(day < 10):
-                    return str((year-2000)) + "0" + str(month) + "0" + str(day)
-                elif(day > 9):
-                    return str((year-2000)) + "0" + str(month) + "" + str(day)
-            elif(month>9):
-                if(day < 10):
-                    return str((year-2000)) + "" + str(month) + "0" + str(day)
-                elif(day > 9):
-                    return str((year-2000)) + "" + str(month) + "" + str(day)
+            date = printDateandReturn(day, month, year, Months)
+            return date
 
     #For the months that have 30 days
     elif(month == 4 or month == 6 or month == 9 or month == 11):
@@ -74,19 +79,8 @@ def dateInput():
             print("You have to choose a valid day ")
             dateInput()
         else:
-            print("The date you chosed is the " + str(day) + 
-            " of " + str(Months[month - 1]) + " of " + str(year))
-
-            if(month < 10):
-                if(day < 10):
-                    return str((year-2000)) + "0" + str(month) + "0" + str(day)
-                elif(day > 9):
-                    return str((year-2000)) + "0" + str(month) + "" + str(day)
-            elif(month>9):
-                if(day < 10):
-                    return str((year-2000)) + "" + str(month) + "0" + str(day)
-                elif(day > 9):
-                    return str((year-2000)) + "" + str(month) + "" + str(day)
+            date = printDateandReturn(day, month, year, Months)
+            return date
 
     #For the month of february
     elif(month == 2):
@@ -99,19 +93,8 @@ def dateInput():
                 print("You have to choose a valid day")
                 dateInput()
             else:
-                print("The date you chosed is the " + str(day) + 
-                " of " + str(Months[month - 1]) + " of " + str(year))
-
-                if(month < 10):
-                    if(day < 10):
-                        return str((year-2000)) + "0" + str(month) + "0" + str(day)
-                    elif(day > 9):
-                        return str((year-2000)) + "0" + str(month) + "" + str(day)
-                elif(month>9):
-                    if(day < 10):
-                        return str((year-2000)) + "" + str(month) + "0" + str(day)
-                    elif(day > 9):
-                        return str((year-2000)) + "" + str(month) + "" + str(day)
+                date = printDateandReturn(day, month, year, Months)
+                return date
 
         #For February
         else:
@@ -122,19 +105,8 @@ def dateInput():
                 print("You have to choose a valid day")
                 dateInput()
             else:
-                print("The date you chosed is the " + str(day) + 
-                " of " + str(Months[month - 1]) + " of " + str(year))
-
-                if(month < 10):
-                    if(day < 10):
-                       return str((year-2000)) + "0" + str(month) + "0" + str(day)
-                    elif(day > 9):
-                        return str((year-2000)) + "0" + str(month) + "" + str(day)
-                elif(month>9):
-                    if(day < 10):
-                        return str((year-2000)) + "" + str(month) + "0" + str(day)
-                    elif(day > 9):
-                        return str((year-2000)) + "" + str(month) + "" + str(day)
+                date = printDateandReturn(day, month, year, Months)
+                return date
 
 #The following funcion uses the function dateInput() to scrape the image of that date. 
 def pictureScrapper():
@@ -188,6 +160,75 @@ def pictureScrapper():
     except:
         print("No image was found, the date you chosed is a video")
 
+def pictureScrapper(day, month, year):
 
+    if(year < 2015):
+        return print("Invalid Year")
 
-pictureScrapper()
+    if(month < 1 or month > 12):
+        return print("Invalid month")
+    elif(month < 10):
+        if(day < 1 or day > 31):
+            return print("Invalid day")
+        elif(day<10):
+            date = str(year - 2000) + "0" + str(month) + "0" + str(day)
+        elif(day >= 10):
+            date = str(year - 2000) + "0" + str(month) + "" + str(day)
+    elif(month >= 10):
+        if(day < 1 or day > 31):
+            return print("Invalid day")
+        elif(day<10):
+            date = str(year - 2000) + "" + str(month) + "0" + str(day)
+        elif(day >= 10):
+            date = str(year - 2000) + "" + str(month) + "" + str(day)
+
+    #We call the function for the date and we store in a variable
+    date = int(date)
+
+    #We check for the date of today so we can find the image that we are looking for
+    datetoday = datetime.today().strftime('%Y%m%d')
+    datetoday = int(datetoday[2:])
+
+    #We check the date that is before the date of today
+    if(date > datetoday):
+        return print("Choose a date that is before today")
+        
+    #Finally, if the date is valid, we pars it so we use it as a string
+    date = str(date)
+
+    #This is the url of the picture
+    url = "https://apod.nasa.gov/apod/ap" + date + ".html"
+    html_text = requests.get(url).content
+
+    #We call the Soup variable
+    soup = BeautifulSoup(html_text, 'html.parser')
+
+    #This try block will try to find the image, if the picture of the day es an image then it will be compleated.
+    try:
+        #We look for the img type
+        images = soup.findAll('img') 
+
+        #This will save the string from the url of the image.
+        example = images[0]
+
+        url_base = "https://apod.nasa.gov/apod/" #A base url to find the image
+        url_ext = example.attrs['src'] #We extract the url for the image so we can find it
+
+        full_Url = url_base + url_ext #This is the url for the image
+
+        r = requests.get(full_Url, stream=True) #We requests for the url of the image
+
+        if r.status_code == 200: #We make sure that the requests is valid 
+
+            #We store the image in the folder Images and name the pictures as image and the date.
+            with open("D:/Proyectos/Python/WebScrapping/AstronomyPictureOfTheDay/Images/image" + date + ".jpg", 'wb') as f:
+                r.raw.decode_content = True
+                shutil.copyfileobj(r.raw, f)
+
+            print("The image was downloaded")
+
+    #The except block will take into acount when there is a video 
+    except:
+        print("No image was found, the date you chosed is a video")
+
+pictureScrapper(35,10,2020)
