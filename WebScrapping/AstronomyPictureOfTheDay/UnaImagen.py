@@ -5,13 +5,16 @@ import shutil
 #This is a webscrapper that scrapes the image of the day fot the website A Picture of the day of NASA. 
 #You enter the date and it gives you the image. 
 
-#The following function receives de date by console
+#The following function receives de date by console. It will return a String with the date we need
 def dateInput():
 
     Months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    #An array for the months
+
     print("Please enter the year, from  2015 to today")
     year = int(input())
 
+    #We have to check that the year is valid 
     if(year<2015):
         print("Please enter a year that is valid.")
         dateInput()
@@ -32,6 +35,7 @@ def dateInput():
 
     month = int(input())
 
+    #Checking the month
     if(month > 12 and month < 1):
         print("You have to choose a valid month")
         dateInput()
@@ -46,10 +50,19 @@ def dateInput():
             print("you have to choose a valid day")
             dateInput()
         else:
-            print("The date you chosed is the " + day + 
-            " of " + Months[month - 1] + " of " + year)
+            print("The date you chosed is the " + str(day) + 
+            " of " + str(Months[month - 1]) + " of " + str(year))
 
-            return day + "/" + month + "/" + year
+            if(month < 10):
+                if(day < 10):
+                    return str((year-2000)) + "0" + str(month) + "0" + str(day)
+                elif(day > 9):
+                    return str((year-2000)) + "0" + str(month) + "" + str(day)
+            elif(month>9):
+                if(day < 10):
+                    return str((year-2000)) + "" + str(month) + "0" + str(day)
+                elif(day > 9):
+                    return str((year-2000)) + "" + str(month) + "" + str(day)
 
     #For the months that have 30 days
     elif(month == 4 or month == 6 or month == 9 or month == 11):
@@ -60,10 +73,19 @@ def dateInput():
             print("You have to choose a valid day ")
             dateInput()
         else:
-            print("The date you chosed is the " + day + 
-            " of " + Months[month - 1] + " of " + year)
+            print("The date you chosed is the " + str(day) + 
+            " of " + str(Months[month - 1]) + " of " + str(year))
 
-            return day + "/" + month + "/" + year
+            if(month < 10):
+                if(day < 10):
+                    return str((year-2000)) + "0" + str(month) + "0" + str(day)
+                elif(day > 9):
+                    return str((year-2000)) + "0" + str(month) + "" + str(day)
+            elif(month>9):
+                if(day < 10):
+                    return str((year-2000)) + "" + str(month) + "0" + str(day)
+                elif(day > 9):
+                    return str((year-2000)) + "" + str(month) + "" + str(day)
 
     #For the month of february
     elif(month == 2):
@@ -76,11 +98,21 @@ def dateInput():
                 print("You have to choose a valid day")
                 dateInput()
             else:
-                print("The date you chosed is the " + day + 
-                " of " + Months[month - 1] + " of " + year)
+                print("The date you chosed is the " + str(day) + 
+                " of " + str(Months[month - 1]) + " of " + str(year))
 
-                return day + "/" + month + "/" + year
+                if(month < 10):
+                    if(day < 10):
+                        return str((year-2000)) + "0" + str(month) + "0" + str(day)
+                    elif(day > 9):
+                        return str((year-2000)) + "0" + str(month) + "" + str(day)
+                elif(month>9):
+                    if(day < 10):
+                        return str((year-2000)) + "" + str(month) + "0" + str(day)
+                    elif(day > 9):
+                        return str((year-2000)) + "" + str(month) + "" + str(day)
 
+        #For February
         else:
             print("Please enter the day between 1 and 28")
             day = int(input())
@@ -89,10 +121,19 @@ def dateInput():
                 print("You have to choose a valid day")
                 dateInput()
             else:
-                print("The date you chosed is the " + day + 
-                " of " + Months[month - 1] + " of " + year)
+                print("The date you chosed is the " + str(day) + 
+                " of " + str(Months[month - 1]) + " of " + str(year))
 
-                return day + "/" + month + "/" + year
+                if(month < 10):
+                    if(day < 10):
+                       return str((year-2000)) + "0" + str(month) + "0" + str(day)
+                    elif(day > 9):
+                        return str((year-2000)) + "0" + str(month) + "" + str(day)
+                elif(month>9):
+                    if(day < 10):
+                        return str((year-2000)) + "" + str(month) + "0" + str(day)
+                    elif(day > 9):
+                        return str((year-2000)) + "" + str(month) + "" + str(day)
 
 
 dateInput()
