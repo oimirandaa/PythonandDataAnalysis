@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import shutil
+from datetime import datetime
 
 #This is a webscrapper that scrapes the image of the day fot the website A Picture of the day of NASA. 
 #You enter the date and it gives you the image. 
@@ -138,7 +139,19 @@ def dateInput():
 #The following funcion uses the function dateInput() to scrape the image of that date. 
 def pictureScrapper():
     #We call the function for the date and we store in a variable
-    date = dateInput()
+    date = int(dateInput())
+
+    #We check for the date of today so we can find the image that we are looking for
+    datetoday = datetime.today().strftime('%Y%m%d')
+    datetoday = int(datetoday[2:])
+
+    #We check the date that is before the date of today
+    if(date > datetoday):
+        print("Choose a date that is before today")
+        pictureScrapper()
+
+    #Finally, if the date is valid, we pars it so we use it as a string
+    date = str(date)
 
     #This is the url of the picture
     url = "https://apod.nasa.gov/apod/ap" + date + ".html"
@@ -171,12 +184,10 @@ def pictureScrapper():
 
             print("The image was downloaded")
 
-        return 
     #The except block will take into acount when there is a video 
     except:
         print("No image was found, the date you chosed is a video")
 
-        return 
 
 
 pictureScrapper()
