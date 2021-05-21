@@ -1,0 +1,1 @@
+#This program will scrape all the dates from the website so we can extract all the pictures since 2015

@@ -195,7 +195,7 @@ def pictureScrapper(day, month, year):
     if(date > datetoday):
         return print("Choose a date that is before today")
         
-    #Finally, if the date is valid, we pars it so we use it as a string
+    #Finally, if the date is valid, we parse it so we use it as a string
     date = str(date)
 
     #This is the url of the picture
