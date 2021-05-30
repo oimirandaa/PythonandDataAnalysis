@@ -40,5 +40,61 @@ def dates():
 
     return newDates
     
-for date in dates():
-    print(date)
+#This functions transforms the month in the tuple into a number between 1 and 12
+def Months(Month):
+    Months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+    if(Month == Months[0]):
+        month = "01"
+    elif(Month == Months[1]):
+        month = "02"
+    elif(Month == Months[2]):
+        month = "03"    
+    elif(Month == Months[3]):
+        month = "04"
+    elif(Month == Months[4]):
+        month = "05"
+    elif(Month == Months[5]):
+        month = "06"
+    elif(Month == Months[6]):
+        month = "07"
+    elif(Month == Months[7]):
+        month = "08"
+    elif(Month == Months[8]):
+        month = "09"
+    elif(Month == Months[9]):
+        month = "10"
+    elif(Month == Months[10]):
+        month = "11"
+    elif(Month == Months[11]):
+        month = "12"
+    
+    return month
+
+#This function returns a list with al the dates in the format we want. 
+def cleanDates():
+
+    cleanDates = []
+
+    #This is the actual cleaning.
+    for date in dates():
+
+        cleanDate = date.split()
+
+        #This part, transformas the year of the tuple into a number with only two numbers, Like we need it. 
+        year = int(cleanDate[0])
+    
+        year = str(year - 2000)
+
+        #We need to transform the month into a number 
+        month = Months(cleanDate[1])
+
+        #We Parse the day 
+        day = str(cleanDate[2])
+
+        #We combine them 
+
+        cleanDates.append(year + month + day)
+
+    return cleanDates
+

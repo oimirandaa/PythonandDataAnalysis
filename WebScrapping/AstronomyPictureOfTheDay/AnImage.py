@@ -3,6 +3,7 @@ import requests
 import shutil
 from datetime import datetime
 
+
 #This is a webscrapper that scrapes the image of the day fot the website A Picture of the day of NASA. 
 #You enter the date and it gives you the image. 
 
@@ -64,7 +65,7 @@ def dateInput():
         day = int(input())
 
         if(day<1 or day > 31):
-            print("you have to choose a valid day")
+            print("You have to choose a valid day")
             dateInput()
         else:
             date = printDateandReturn(day, month, year, Months)
@@ -160,6 +161,11 @@ def pictureScrapper():
     except:
         print("No image was found, the date you chosed is a video")
 
+        pictureScrapper()
+
+
+pictureScrapper() 
+
 #This version of the function takes as a parameter the date you want
 def pictureScrapper(day, month, year):
 
@@ -233,4 +239,6 @@ def pictureScrapper(day, month, year):
     except:
         print("No image was found, the date you chosed is a video")
 
-pictureScrapper()
+        pictureScrapper(day, month, year)
+
+
