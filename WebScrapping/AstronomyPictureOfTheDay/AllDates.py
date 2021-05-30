@@ -1,7 +1,6 @@
 #This program will scrape all the dates from the website so we can extract all the pictures since 2015
 from bs4 import BeautifulSoup
 import requests
-import shutil
 from datetime import datetime
 
 #This Function scrapes all the dates that have an image for APOD
