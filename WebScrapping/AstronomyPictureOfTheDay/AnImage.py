@@ -155,13 +155,11 @@ def pictureScrapper():
                 r.raw.decode_content = True
                 shutil.copyfileobj(r.raw, f)
 
-            print("The image was downloaded")
+            print("The image from the date " + date + " was downloaded")
 
     #The except block will take into acount when there is a video 
     except:
         print("No image was found, the date you chosed is a video")
-
-        pictureScrapper()
 
 #This version of the function takes as a parameter the date you want
 def pictureScrapper(day, month, year):
@@ -230,14 +228,12 @@ def pictureScrapper(day, month, year):
                 r.raw.decode_content = True
                 shutil.copyfileobj(r.raw, f)
 
-            print("The image was downloaded")
+            print("The image from the date " + date + " was downloaded")
 
     #The except block will take into acount when there is a video 
     except:
         print("No image was found, the date you chosed is a video")
-
-        pictureScrapper(day, month, year)
-
+        
 #This version of the function scrapes the picture for today 
 def pictureScrapper():
     #We check for the date of today so we can find the image that we are looking for
@@ -282,8 +278,4 @@ def pictureScrapper():
     #The except block will take into acount when there is a video 
     except:
         print("No image was found, the date you chosed is a video")
-
-        pictureScrapper()
-
-pictureScrapper()
 
