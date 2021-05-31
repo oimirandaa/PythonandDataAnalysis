@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 import shutil
-from datetime import datetime, date
 
 
 #The following funcion uses the function dateInput() to scrape the image of that date. 
@@ -44,7 +43,6 @@ def pictureScrapper(date):
     #The except block will take into acount when there is a video 
     except:
         print("No image was found, the date " + date + " is a video")
-
 
 #This Function scrapes all the dates that have an image for APOD
 def dates():
@@ -140,9 +138,9 @@ def cleanDates():
 
     return cleanDates
 
+#This function will download all the images
 def allImages():
     for date in cleanDates():
         pictureScrapper(date)
-
 
 allImages()
