@@ -235,7 +235,7 @@ def pictureScrapper(day, month, year):
     except:
         print("No image was found, the date you chosed is a video")
     
-pictureScrapper(7,7,2021)
+pictureScrapper(18,8,2021)
 
 #This version of the function scrapes the picture for today 
 def pictureScrapper():
